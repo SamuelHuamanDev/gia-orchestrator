@@ -1,11 +1,11 @@
 import express from 'express';
-import { config } from './config/env';
-import redisClient, { connectRedis } from './services/redisService';
-import { ai } from './services/geminiService';
+import { config } from './core/config/env';
+import redisClient, { connectRedis } from './core/services/redisService';
+import { ai } from './core/services/geminiService';
 import { buscarVuelosDeclaration, executeBuscarVuelos } from './tools/flightSearch';
-import { FlightSearchParams } from './models/flightSearchModel';
-import { MODEL_NAME } from './services/geminiService';
-import { systemInstruction } from './constants/systemInstruction';
+import { MODEL_NAME } from './core/services/geminiService';
+import { systemInstruction } from './core/constants/systemInstruction';
+import { FlightSearchCriteria } from './domain/flightSearch/entities';
 
 const app = express();
 app.use(express.json());
@@ -47,7 +47,7 @@ app.post('/chat', async (req, res) => {
 
             if (call.name === 'buscarVuelos' && !!call.args) {
                 // Ejecutamos la búsqueda en nuestros GDS simulados
-                const vuelosResult = await executeBuscarVuelos(call.args as unknown as FlightSearchParams, sessionId);
+                const vuelosResult = await executeBuscarVuelos(call.args as unknown as FlightSearchCriteria, sessionId);
 
                 // Le devolvemos los resultados de la API al modelo
                 response = await chat.sendMessage({
