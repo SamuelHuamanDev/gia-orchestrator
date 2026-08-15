@@ -1,0 +1,36 @@
+{
+  "name": "gia-orchestrator",
+  "version": "1.0.0",
+  "description": "PoC del backend para el asistente virtual GIA B2B usando TypeScript, Node.js y Gemini 3.5 Flash Lite",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "chatbot",
+    "ai",
+    "gemini",
+    "typescript",
+    "b2b",
+    "poc"
+  ],
+  "author": "Samuel Huamán",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^2.17.1",
+    "axios": "^1.19.0",
+    "date-fns": "^4.4.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "redis": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
